@@ -1,0 +1,91 @@
+/* --- ESTILOS DO DASHBOARD --- */
+/* Coloque isso no FINAL do seu global.css */
+
+/* Isso FORÇA o body da página do dashboard
+  a organizar os itens em coluna (um em cima do outro).
+*/
+.dashboard-body {
+    display: flex !important; /* !important garante que isso vença o login.css */
+    flex-direction: column !important;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    
+    /* Reseta estilos de centralização que podem vir do login.css */
+    justify-content: flex-start; 
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Isso FORÇA o cabeçalho a ocupar 100% da largura
+  e a separar o título (esquerda) do ícone (direita).
+*/
+.dashboard-header {
+    display: flex;
+    justify-content: space-between; /* Título na esquerda, ícone na direita */
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box; /* Impede o padding de quebrar o layout */
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0; /* Remove margens que possam estar empurrando */
+}
+
+.user-profile svg {
+    width: 32px;
+    height: 32px;
+    color: #555;
+    cursor: pointer;
+}
+
+/* Container Principal do Dashboard */
+.dashboard-container {
+    padding: 0 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Grid dos cartões (sem alteração) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+/* Estilo de cada Cartão (sem alteração) */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-height: 150px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 15px;
+}
+
+.card span {
+    text-align: center;
+}
