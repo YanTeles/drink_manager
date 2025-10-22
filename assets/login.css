@@ -1,0 +1,154 @@
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* O card principal do login */
+.login-card {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 800px;
+    max-width: 90%;
+}
+
+/* Lado esquerdo (Formulário) */
+.login-left {
+    flex: 1;
+    padding: 40px 50px;
+}
+
+/* Cabeçalho com ícone e título */
+.login-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.login-header .icon {
+    font-size: 28px;
+    color: #007bff; /* Azul do ícone */
+    margin-right: 12px;
+}
+
+.login-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+/* Grupo de input (ícone + campo) */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 45px; /* Espaço para o ícone à esquerda */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não afete a largura */
+}
+
+/* Opções (Lembrar de mim) */
+.options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.options input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+.options label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Botão de Entrar */
+.login-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Links inferiores */
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.login-links a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Lado direito (Ilustração) */
+.login-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fcfcfc; /* Fundo ligeiramente diferente, opcional */
+    padding: 40px;
+}
+
+.login-right img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .login-card {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .login-right {
+        /* Esconde a ilustração em telas muito pequenas */
+        display: none; 
+    }
+
+    .login-left {
+        padding: 30px;
+    }
+}
