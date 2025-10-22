@@ -1,0 +1,167 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Fundo cinza claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Espaçamento para o card não colar nas bordas */
+    box-sizing: border-box;
+}
+
+/* Card principal */
+.dashboard-card {
+    width: 100%;
+    max-width: 900px; /* Largura máxima do card */
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 25px 40px;
+    box-sizing: border-box;
+}
+
+/* Navbar interna */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee; /* Linha sutil de separação, opcional */
+    padding-bottom: 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #007bff; /* Azul */
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+.logo-container h1 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+    font-weight: 600;
+}
+
+.user-profile {
+    font-size: 18px;
+    color: #555;
+    background-color: #f0f2f5; /* Círculo cinza */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Conteúdo principal */
+.content {
+    width: 100%;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.content-header h2 {
+    font-size: 32px;
+    color: #222;
+    margin: 0;
+    font-weight: bold;
+}
+
+.add-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+/* Container da tabela para responsividade */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Adiciona scroll horizontal se a tabela for muito larga */
+}
+
+/* Tabela de produtos */
+.product-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre células */
+    font-size: 16px;
+}
+
+.product-table th, 
+.product-table td {
+    text-align: left;
+    padding: 16px 10px;
+    border-bottom: 1px solid #eee; /* Linha entre as linhas */
+}
+
+.product-table th {
+    background-color: #f8f9fa; /* Fundo do cabeçalho da tabela */
+    color: #666;
+    font-weight: 600;
+}
+
+/* Remove a borda da última linha do corpo */
+.product-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.product-table td {
+    color: #333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .logo-container h1 {
+        font-size: 20px;
+    }
+
+    .content-header {
+        flex-direction: column; /* Empilha o título e o botão */
+        align-items: flex-start;
+        gap: 15px; /* Espaço entre o título e o botão */
+    }
+
+    .content-header h2 {
+        font-size: 28px;
+    }
+
+    .add-button {
+        width: 100%; /* Botão ocupa largura total */
+    }
+}
