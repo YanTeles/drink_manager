@@ -1,0 +1,55 @@
+/* --- ESTILOS DA PÁGINA DE NOTIFICAÇÕES --- */
+
+/* Título "Notificações" (reutiliza o h2 do Caixa) */
+.content-wrapper h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+/* Lista que agrupa as notificações */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os itens */
+    margin-bottom: 24px; /* Espaço até o botão "Ver todas" */
+}
+
+/* Cada item de notificação individual */
+.notification-item {
+    display: flex;
+    justify-content: space-between; /* Separa o texto do botão 'x' */
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+/* Conteúdo de texto (Título e Parágrafo) */
+.notification-content strong {
+    font-size: 16px;
+    color: #333;
+    display: block; /* Faz o título ficar na linha de cima */
+}
+
+.notification-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0 0 0; /* Remove margem padrão do <p> */
+}
+
+/* Botão de fechar 'x' */
+.notification-close-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0 0 15px; /* Espaço para não ficar colado no texto */
+}
+
+.notification-close-btn:hover {
+    color: #333;
+}

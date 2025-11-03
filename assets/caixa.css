@@ -1,0 +1,55 @@
+/* --- ESTILOS DO HEADER (Ícones) --- */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaço entre o ícone de usuário e o de sair */
+}
+
+.exit-icon {
+    font-size: 22px;
+    color: #555;
+    text-decoration: none;
+}
+.exit-icon:hover {
+    color: #e74c3c; /* Vermelho no hover */
+}
+
+
+/* --- ESTILOS DA PÁGINA DE CAIXA --- */
+
+/* Card "Saldo Atual" */
+.summary-card {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.summary-card h3 {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+.summary-card .saldo-valor {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Título "Histórico" dentro do card */
+.content-wrapper h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+/* Container para alinhar o botão "Adicionar" à direita */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
