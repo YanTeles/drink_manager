@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+
+# Redireciona a raiz para a página inicial
+[[redirects]]
+  from = "/"
+  to = "/html/index.html"
+  status = 200
+
+# Redireciona todas as rotas não encontradas para index.html (SPA fallback)
+[[redirects]]
+  from = "/*"
+  to = "/html/index.html"
+  status = 200
+  force = false
+
