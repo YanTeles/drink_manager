@@ -1,0 +1,26 @@
+/* estilos básicos para relatórios */
+.metrics-row { display:flex; gap:14px; margin:8px 0 18px; flex-wrap:wrap; }
+.metric-card {
+    background:#fff; padding:18px; border-radius:10px; box-shadow:0 8px 20px rgba(15,23,42,0.06);
+    min-width:150px; flex:1;
+}
+.metric-title { font-size:13px; color:#6b7280; font-weight:600; }
+.metric-value { font-size:22px; font-weight:800; color:#111827; margin-top:8px; }
+
+.table-scroll { overflow:auto; max-height:280px; padding:6px 0; }
+.report-table { width:100%; border-collapse:collapse; }
+.report-table th, .report-table td { padding:8px 10px; text-align:left; border-bottom:1px solid rgba(0,0,0,0.04); }
+
+.top-list { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+.top-item { display:flex; gap:10px; align-items:center; padding:10px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(0,0,0,0.03); }
+.top-rank { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:#eef2ff; font-weight:800; color:#4f46e5; }
+.top-info small { display:block; color:#6b7280; font-size:12px; margin-top:4px; }
+
+.controls-row { display:flex; gap:8px; align-items:center; }
+.controls-row input { padding:8px 10px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); min-width:220px; }
+.btn-link { padding:8px 10px; border-radius:8px; background:transparent; border:1px solid rgba(0,0,0,0.06); cursor:pointer; }
+
+/* mobile */
+@media (max-width:720px) {
+    .metrics-row { flex-direction:column; }
+}

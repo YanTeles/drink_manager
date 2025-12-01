@@ -29,63 +29,15 @@
             
             <div class="card-title-bar">
                 <h2>Fornecedores</h2>
-                <button class="btn-add" id="btn-novo-fornecedor">Adicionar</button>
+                <a class="btn-add" href="novo-fornecedor.html">Adicionar</a>
             </div>
 
             <div class="supplier-list" id="supplier-list-body">
-                
-                <div class="supplier-item">
-                    <div class="supplier-info">
-                        <strong>João Carlos</strong>
-                        <span>(11) 99999-1234</span>
-                    </div>
-                    <div class="supplier-actions">
-                        <a href="#" class="btn-link btn-edit-supplier">Editar</a>
-                        <a href="#" class="btn-link btn-delete-supplier">Excluir</a>
-                    </div>
-                </div>
-
-                <div class="supplier-item">
-                    <div class="supplier-info">
-                        <strong>Antônia Lopes</strong>
-                        <span>(11) 87654-5789</span>
-                    </div>
-                    <div class="supplier-actions">
-                        <a href="#" class="btn-link btn-edit-supplier">Editar</a>
-                        <a href="#" class="btn-link btn-delete-supplier">Excluir</a>
-                    </div>
-                </div>
-
-                </div>
+                <!-- lista será populada via JavaScript -->
+            </div>
         </div>
 
     </main>
-    
-    <div class="modal-overlay hidden" id="fornecedor-modal-overlay"></div>
-
-    <div class="modal hidden" id="modal-novo-fornecedor">
-        <div class="modal-header">
-            <h2>Novo Fornecedor</h2>
-            <button class="modal-close-btn" id="btn-fechar-modal-fornecedor">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-            <form id="fornecedor-form">
-                
-                <div class="form-group">
-                    <label for="forn-nome">Nome</label>
-                    <input type="text" id="forn-nome" placeholder="Nome do fornecedor" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="forn-telefone">Telefone</label>
-                    <input type="tel" id="forn-telefone" placeholder="(11) 99999-9999" required>
-                </div>
-                
-                <button type="submit" class="btn-add" style="width: 100%;">Salvar</button>
-            </form>
-        </div>
-    </div>
 
     <script src="../scripts/script.js"></script>
     

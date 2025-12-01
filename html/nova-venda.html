@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nova Venda - Gestão de Estoque</title>
+    <link rel="stylesheet" href="../assets/global.css" />
+    <link rel="stylesheet" href="../assets/css/nova-venda.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body class="dashboard-body">
+
+    <header class="dashboard-header">
+        <div style="display:flex; align-items:center; gap:15px;">
+            <a href="vendas.html" style="color:inherit; text-decoration:none;">
+                <i class="fas fa-arrow-left" style="font-size:18px;"></i>
+            </a>
+            <h1>Nova Venda</h1>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="content-wrapper" style="max-width:860px; margin:32px auto;">
+            <div class="card-title-bar">
+                <h2>Registrar venda — vários itens</h2>
+            </div>
+
+            <div class="card">
+                <form id="sale-form" class="form-stack">
+                    <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:12px;">
+                        <div style="font-weight:700">Itens da venda</div>
+                        <button type="button" id="add-item-btn" class="btn-link">+ Adicionar item</button>
+                    </div>
+
+                    <div class="table-scroll" style="max-height:320px; overflow:auto;">
+                        <table id="items-table" style="width:100%; border-collapse:collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left; width:48%;">Produto</th>
+                                    <th style="width:16%;">Preço unit.</th>
+                                    <th style="width:12%;">Qtd</th>
+                                    <th style="width:16%;">Total</th>
+                                    <th style="width:8%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- linha inicial criada via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end; gap:18px; margin-top:16px; align-items:center;">
+                        <div style="text-align:right;">
+                            <div style="color:#6b7280; font-size:13px;">Subtotal</div>
+                            <div id="subtotal" style="font-weight:800; margin-top:6px;">R$ 0,00</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="color:#6b7280; font-size:13px;">Total</div>
+                            <div id="grand-total" style="font-weight:900; font-size:18px; margin-top:6px;">R$ 0,00</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-top:18px;">
+                        <button type="submit" class="btn-add" style="flex:1">Salvar venda</button>
+                        <a href="vendas.html" class="btn-link" style="align-self:center">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/vendas.js"></script>
+</body>
+</html>

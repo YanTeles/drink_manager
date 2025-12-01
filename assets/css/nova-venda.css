@@ -1,0 +1,86 @@
+/* Estilos específicos para nova-venda.html */
+.content-wrapper { padding: 32px 20px; }
+
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    padding: 20px;
+    transition: transform .12s ease, box-shadow .12s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(15,23,42,0.08); }
+
+.card-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.card-title-bar h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.form-stack { display: flex; flex-direction: column; gap: 12px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+    font-size: 13px;
+    color: #374151;
+    font-weight: 600;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="tel"] {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    background: linear-gradient(180deg,#fff,#fbfdff);
+    outline: none;
+    font-size: 14px;
+    color: #111827;
+    transition: box-shadow .12s ease, border-color .12s ease;
+}
+.form-group input:focus {
+    box-shadow: 0 6px 18px rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.8);
+}
+
+.controls-row { display:flex; gap:12px; margin-top:6px; align-items:center; }
+
+.btn-add {
+    display: inline-block;
+    background: linear-gradient(90deg,#06b6d4,#3b82f6);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-add:hover { opacity: 0.95; transform: translateY(-1px); }
+
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    color: #374151;
+    background: transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid rgba(31,41,55,0.06);
+}
+
+@media (max-width: 720px) {
+    .content-wrapper { padding: 18px 12px; }
+    .card { padding: 16px; }
+    .card-title-bar h2 { font-size: 16px; }
+    .btn-add { padding: 10px 8px; font-size: 14px; }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Fornecedor - Gestão de Estoque</title>
+    <link rel="stylesheet" href="../assets/global.css">
+</head>
+<body class="dashboard-body">
+
+    <header class="dashboard-header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="fornecedores.html" style="color: inherit; text-decoration: none;">
+                <i class="fas fa-arrow-left" style="font-size: 18px;"></i>
+            </a>
+            <h1>Novo Fornecedor</h1>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="content-wrapper" style="max-width: 480px; margin: 32px auto;">
+            <div class="card-title-bar">
+                <h2>Adicionar fornecedor</h2>
+            </div>
+
+            <div class="card">
+                <form id="fornecedor-form">
+                    <div class="form-group">
+                        <label for="forn-nome">Nome</label>
+                        <input type="text" id="forn-nome" placeholder="Nome do fornecedor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="forn-telefone">Telefone</label>
+                        <input type="tel" id="forn-telefone" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-top:16px;">
+                        <button type="submit" class="btn-add" style="flex:1">Salvar</button>
+                        <a href="fornecedores.html" class="btn-link" style="align-self:center">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="../scripts/script.js"></script>
+    <script>
+        // Se vier com query ?edit=index carrega dados para edição
+        (function () {
+            const form = document.getElementById('fornecedor-form');
+            const nameInput = document.getElementById('forn-nome');
+            const phoneInput = document.getElementById('forn-telefone');
+
+            // extrai query string edit
+            const params = new URLSearchParams(location.search);
+            const editIndex = params.get('edit');
+
+            if (editIndex !== null) {
+                const suppliers = window.appGetSuppliers();
+                const s = suppliers[Number(editIndex)];
+                if (s) {
+                    nameInput.value = s.name || '';
+                    phoneInput.value = s.phone || '';
+                }
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = nameInput.value.trim();
+                const phone = phoneInput.value.trim();
+                if (!name || !phone) return;
+
+                const suppliers = window.appGetSuppliers();
+                if (editIndex !== null) {
+                    suppliers[Number(editIndex)] = { name, phone };
+                } else {
+                    suppliers.push({ name, phone });
+                }
+                window.appSaveSuppliers(suppliers);
+                location.href = 'fornecedores.html';
+            });
+        })();
+    </script>
+</body>
+</html>

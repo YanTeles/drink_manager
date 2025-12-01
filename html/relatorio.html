@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Relatórios - Gestão de Estoque</title>
+    <link rel="stylesheet" href="../assets/global.css" />
+    <link rel="stylesheet" href="../assets/css/relatorio.css" />
+</head>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <div style="display:flex; align-items:center; gap:15px;">
+            <a href="menu.html" style="color:inherit; text-decoration:none;">
+                <i class="fas fa-arrow-left" style="font-size:18px;"></i>
+            </a>
+            <h1>Relatórios</h1>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="content-wrapper">
+            <div class="card-title-bar">
+                <h2>Visão Geral</h2>
+            </div>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <div class="metric-title">Total de vendas</div>
+                    <div id="metric-count" class="metric-value">—</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Receita total</div>
+                    <div id="metric-revenue" class="metric-value">R$ —</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Ticket médio</div>
+                    <div id="metric-average" class="metric-value">R$ —</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:18px;">
+                <div class="card-title-bar">
+                    <h3>Vendas (ultimas registradas)</h3>
+                    <div class="controls-row">
+                        <input id="report-search" placeholder="Pesquisar produto ou código" />
+                        <button id="refresh-btn" class="btn-link">Atualizar</button>
+                    </div>
+                </div>
+
+                <div class="table-scroll">
+                    <table class="report-table">
+                        <thead>
+                            <tr><th>Código</th><th>Produto</th><th>Quantidade</th><th>Total</th></tr>
+                        </thead>
+                        <tbody id="report-body">
+                            <tr><td colspan="4">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:18px;">
+                <div class="card-title-bar"><h3>Top produtos</h3></div>
+                <div id="top-products" class="top-list">
+                    <!-- preenchido via JS -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // utilidades: pega vendas do localStorage (compatível com appGetSales)
+        function getSales() {
+            if (window.appGetSales) return window.appGetSales();
+            try { return JSON.parse(localStorage.getItem('vendas') || '[]'); } catch { return []; }
+        }
+
+        function parseMoney(v) {
+            if (v == null) return 0;
+            const s = String(v).replace(/[^\d,.\-]/g,'').replace(',', '.');
+            const n = parseFloat(s);
+            return Number.isFinite(n) ? n : 0;
+        }
+
+        function formatMoney(v) {
+            return 'R$ ' + Number(v || 0).toFixed(2).replace('.', ',');
+        }
+
+        function formatCode(id) {
+            return String(id).slice(-6).padStart(3, '0');
+        }
+
+        function renderReport(filter = '') {
+            const list = getSales().slice().reverse(); // mostrar últimas primeiro
+            const q = (filter || '').toLowerCase().trim();
+
+            const filtered = list.filter(s =>
+                !q || String(s.id).includes(q) ||
+                (s.product || '').toLowerCase().includes(q) ||
+                String(s.quantity).includes(q) ||
+                (s.total || '').toLowerCase().includes(q)
+            );
+
+            const tbody = document.getElementById('report-body');
+            if (!filtered.length) {
+                tbody.innerHTML = '<tr><td colspan="4">Nenhuma venda encontrada.</td></tr>';
+            } else {
+                tbody.innerHTML = filtered.map(s => `
+                    <tr>
+                        <td>${escapeHtml(formatCode(s.id))}</td>
+                        <td>${escapeHtml(s.product)}</td>
+                        <td>${escapeHtml(s.quantity)}</td>
+                        <td>${escapeHtml(s.total)}</td>
+                    </tr>
+                `).join('');
+            }
+
+            // métricas
+            const sales = getSales();
+            const totalCount = sales.length;
+            const totalRevenue = sales.reduce((acc, cur) => acc + parseMoney(cur.total), 0);
+            const avg = totalCount ? totalRevenue / totalCount : 0;
+
+            document.getElementById('metric-count').textContent = totalCount;
+            document.getElementById('metric-revenue').textContent = formatMoney(totalRevenue);
+            document.getElementById('metric-average').textContent = formatMoney(avg);
+
+            renderTopProducts(sales);
+        }
+
+        function renderTopProducts(sales) {
+            const counts = {};
+            sales.forEach(s => {
+                const name = (s.product || '—').trim();
+                if (!counts[name]) counts[name] = { qty: 0, revenue: 0 };
+                counts[name].qty += Number(s.quantity || 0);
+                counts[name].revenue += parseMoney(s.total);
+            });
+
+            const arr = Object.entries(counts).map(([name, values]) => ({ name, ...values }))
+                .sort((a,b) => b.qty - a.qty)
+                .slice(0,8);
+
+            const node = document.getElementById('top-products');
+            if (!arr.length) node.innerHTML = '<div class="empty-note">Sem vendas para gerar ranking.</div>';
+            else {
+                node.innerHTML = arr.map((p, i) => `
+                    <div class="top-item">
+                        <div class="top-rank">${i+1}</div>
+                        <div class="top-info">
+                            <strong>${escapeHtml(p.name)}</strong>
+                            <small>${p.qty} vendidos • ${formatMoney(p.revenue)}</small>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function escapeHtml(str) {
+            return String(str == null ? '' : str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const search = document.getElementById('report-search');
+            const refresh = document.getElementById('refresh-btn');
+
+            renderReport();
+
+            if (search) {
+                search.addEventListener('input', function () { renderReport(this.value); });
+            }
+            if (refresh) {
+                refresh.addEventListener('click', function (e) { e.preventDefault(); renderReport(search?.value || ''); });
+            }
+        });
+    </script>
+</body>
+</html>
